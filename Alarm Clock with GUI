@@ -1,0 +1,71 @@
+#Alarm Clock with GUI
+
+
+import tkinter as tk
+import datetime
+import pygame
+from tkinter import *
+
+def set_alarm():
+    hour = int(EntryHour.get())
+    minute = int(EntryMinute.get())
+
+    current_time = datetime.datetime.now()
+    alarm_time = current_time.replace(hour=hour, minute=minute, second=0,
+    microsecond=0)
+
+    time_difference = alarm_time - current_time
+    if time_difference.total_seconds() <= 0:
+        label_status.config(text="Invalid time")  #shows the invalid time
+        return
+
+    
+    label_status.config(text=f"Alarm set for {hour:02d}:{minute:02d}")
+
+    
+    root.after(int(time_difference.total_seconds() * 1000), ring_alarm)
+
+def ring_alarm():
+    pygame.mixer.init()
+    pygame.mixer.music.load("song.mpeg")  
+    pygame.mixer.music.play()
+
+def stop_alarm():
+    pygame.mixer.music.stop()
+    label_status.config(text="Alarm stopped")
+
+# Create the main window
+root = tk.Tk()
+root.title("Alarm Clock")
+
+# Create the image
+Clocking=PhotoImage(file='Alarm.png')
+img= Label(root,image=Clocking)
+img.grid(rowspan=1,column=0)
+
+# Create the hour entry field
+label_hour = tk.Label(root, text="Hour:")
+label_hour.grid(row=0, column=1)
+EntryHour = tk.Entry(root, width=4)
+EntryHour.grid(row=0, column=3)
+
+# Create the minute entry field
+label_minute = tk.Label(root, text="Minute:")
+label_minute.grid(row=1, column=1)
+EntryMinute = tk.Entry(root, width=4)
+EntryMinute.grid(row=1, column=3)
+
+# Create the set alarm button
+button_set_alarm = tk.Button(root, text="Set Alarm", command=set_alarm)
+button_set_alarm.grid(row=3, column=0, columnspan=2, pady=10)
+
+# Create the stop alarm button
+button_stop_alarm = tk.Button(root, text="Stop Alarm", command=stop_alarm)
+button_stop_alarm.grid(row=4, column=0, columnspan=2, pady=10)
+
+# Create the status label
+label_status = tk.Label(root, text="")
+label_status.grid(row=5, column=0, columnspan=2)
+
+root.mainloop()
+
