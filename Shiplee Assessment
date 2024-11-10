@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiplee Franchise</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <h1>Join the Shiplee Franchise</h1>
+        <button id="cta-button">Get Started</button>
+    </section>
+
+    <!-- Why Choose Shiplee Section -->
+    <section id="why-choose">
+        <h2>Why Choose Shiplee?</h2>
+        <div class="accordion">
+            <button class="accordion-btn">Benefit 1</button>
+            <div class="accordion-content">Detail about Benefit 1.</div>
+            <button class="accordion-btn">Benefit 2</button>
+            <div class="accordion-content">Detail about Benefit 2.</div>
+            <!-- Add more benefits as needed -->
+        </div>
+    </section>
+
+    <!-- Franchise Benefits Table Section -->
+    <section id="benefits-table">
+        <h2>Franchise Benefits</h2>
+        <table>
+            <tr>
+                <th><i class="icon icon-revenue"></i> Revenue</th>
+                <th><i class="icon icon-network"></i> Network</th>
+                <th><i class="icon icon-support"></i> Support</th>
+            </tr>
+            <tr>
+                <td>High ROI</td>
+                <td>Nationwide Reach</td>
+                <td>24/7 Customer Support</td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </table>
+    </section>
+
+    <!-- Network Reach Section -->
+    <section id="network-reach">
+        <h2>From Anywhere to Everywhere</h2>
+        <div class="network-visuals">
+            <!-- Visuals or Map to represent the network reach -->
+        </div>
+    </section>
+
+    <!-- Partner Logos Section -->
+    <section id="partner-logos">
+        <h2>Our Partners</h2>
+        <div class="logo-grid">
+            <img src="logo1.png" alt="Partner 1" class="logo">
+            <img src="logo2.png" alt="Partner 2" class="logo">
+            <!-- Add more logos as needed -->
+        </div>
+    </section>
+
+    <!-- Scroll-to-Top Button -->
+    <button id="scroll-top">↑</button>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
+
+<!--- CSS--->
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--background-color);
+    color: var(--text-color);
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+/* Hero Section */
+#hero {
+    background: linear-gradient(to right, #4a90e2, #0078e7);
+    color: #fff;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+#cta-button {
+    background-color: #ff6f61;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#cta-button:hover {
+    background-color: #e65c50;
+}
+
+/* Why Choose Shiplee Section */
+.accordion .accordion-btn {
+    background-color: #4a90e2;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+.accordion-content {
+    display: none;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+/* Benefits Table */
+#benefits-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    text-align: center;
+}
+
+#benefits-table th, #benefits-table td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+#benefits-table .icon {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+/* Partner Logos */
+#partner-logos .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.logo {
+    width: 100%;
+    transition: transform 0.3s;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+/* Scroll-to-Top Button */
+#scroll-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px;
+    background-color: #0078e7;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: none;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    --background-color: #1e1e1e;
+    --text-color: #f0f0f0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #hero h1 {
+        font-size: 24px;
+    }
+}
+
+
+
+<!----JavaScript--->
+// Accordion functionality
+document.querySelectorAll('.accordion-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    });
+});
+
+// Scroll-to-top button
+const scrollButton = document.getElementById('scroll-top');
+window.onscroll = () => {
+    scrollButton.style.display = window.scrollY > 300 ? 'block' : 'none';
+};
+scrollButton.onclick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+// Dark mode toggle
+const darkModeToggle = document.createElement('button');
+darkModeToggle.innerText = 'Dark Mode';
+darkModeToggle.onclick = () => {
+    document.body.classList.toggle('dark-mode');
+};
+document.body.appendChild(darkModeToggle);
+
